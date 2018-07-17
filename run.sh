@@ -1,0 +1,1 @@
+python ./scripts/googleImageScrape.py -k "Leni Robredo,Donald Trump,Putin" -l 10
