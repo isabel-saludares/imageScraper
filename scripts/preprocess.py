@@ -66,7 +66,6 @@ def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l
     with open(out_file,'w') as f_out:
         for line in source0: 
             line_content='python3 ' + source_code + ' -k ' + str(line) + ' -l ' + str(l) + '\n'
-            print(line_content)
             f_out.write(line_content)
     print('Batch lists generated!')
 
@@ -87,7 +86,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    out='out-tbd.csv' if args.out1 is None else args.out1
+    out='out-tbd.csv' if args.out1 is None else args.out1 # tbd = to be downloaded
     check_master(args.source,args.master,out)
     if args.num is None: source_list=generate_batches(args.source)
     if args.num is not None: source_list=generate_batches(args.source,int(args.num))
