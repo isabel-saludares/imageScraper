@@ -7,12 +7,14 @@ python3 preprocess.py -s <source file> -m <reference file>
 ```
 
 ## Parameters:
+```
 -s  [SOURCE]      source file; contains the names whose images ARE TO BE SCRAPED; names HAVEN'T BEEN CROSS-CHECKED with the reference file)
 -m  [MASTER]      reference file; contains the names whose images HAVE BEEN SCRAPED
 -o1 [OUT1]        file that contains the names whose images ARE TO BE SCRAPED; names HAVE BEEN CROSS-CHECKED with the reference file)
 -o2 [OUT2]        file that contains the batch scripts
 -n  [NUM]         number of keywords per batch (integer; default=20)
 -l  [LIMIT]       the number of times a keyword has to be downloaded (integer; default=100)
+```
 
 ## Note: keywords have been incorporated in the .py file
 
