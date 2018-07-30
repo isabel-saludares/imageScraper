@@ -8,7 +8,7 @@
 cd [current directory of googleImageScrape.py]
 python preprocess.py -s <source file>
 
-(example: python preprocess.py -s source.csv)
+(example: python preprocess.py -s person_ner.csv)
 
 2.
 Part 1. will yield a .sh file. To run this:
