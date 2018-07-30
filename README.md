@@ -1,5 +1,6 @@
 # Image scraper for Google Images
-# Contributors: Maria Isabel Saludares, JP Maulion
+
+(Contributors: Maria Isabel Saludares, JP Maulion)
 
 ## To run the script/s:
 ```
