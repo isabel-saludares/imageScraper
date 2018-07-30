@@ -1,9 +1,17 @@
 # Image scraper for Google Images
+# Contributors: Maria Isabel Saludares, JP Maulion
 
-## To run the script:
+## To run the script/s:
 ```
-cd [current directory of the googleImageScrape.py]
+1. 
+cd [current directory of googleImageScrape.py]
 python3 preprocess.py -s <source file> -m <reference file>
+
+(example: python3 preprocess.py -s source.csv -m master.csv)
+
+2.
+Part 1. will yield a .sh file. To run this:
+bash <.sh file>
 ```
 
 ## Parameters:
