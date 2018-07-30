@@ -75,7 +75,7 @@ def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l
             ofile='"' + out_file + '"'; tmp='"' + temp + '"'
             line_content1='tail -n +2 ' + ofile + ' > ' + tmp + ' && mv ' + tmp + ' ' + ofile
             f_out.write(line_content0+' && '+ line_content1 + '\n')
-    print('Batch lists generated!')
+    print('3. Batch lists generated!')
 
 
 # ...
