@@ -23,15 +23,15 @@ def check_master(source,master,out):
     """
 
     # check if elements in source are in master
-    print('Starting cross-checking between source %s and master %s files...'%(str(source),str(master)))    
+    print('Starting cross-checking between source %s and master %s files...'%(str(source),str(master)))  
     with open(master) as f_master, open(source) as f_source:
         source = set(f_source.read().splitlines())
         master_lines = set(f_master.read().splitlines())
 
-    with open(out,'w') as csvfile:
+    with open(out,'w') as infile:
         for line in source: 
-            infile=line not in master_lines
-            if infile==True: csvfile.write(str(line)+'\n')
+            within_file=line not in master_lines
+            if within_file==True: infile.write(str(line)+'\n')
     print('1. Cross-checking complete!')
 
 
@@ -65,8 +65,10 @@ def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l
 
     with open(out_file,'w') as f_out:
         for line in source0: 
-            line_content='python3 ' + source_code + ' -k ' + str(line) + ' -l ' + str(l) + '\n'
-            f_out.write(line_content)
+            line_content0='python3 ' + source_code + ' -k ' + str(line) + ' -l ' + str(l) + '\n'
+            line_content1='python3 utils.py -f ' + out_file + '\n'
+            f_out.write(line_content0)
+            f_out.write(line_content1)
     print('Batch lists generated!')
 
 
@@ -77,7 +79,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-s', '--source', help='source file (either file path or file name)', type=str, required=True)
-    parser.add_argument('-m', '--master', help='master file (either file path or file name)', type=str, required=True)
+    parser.add_argument('-m', '--master', help='master file (either file path or file name)', type=str, required=False)
     parser.add_argument('-o1', '--out1', help='out file (this file contains the names whose images should be scraped; either file path or file name)', type=str, required=False)
     parser.add_argument('-n', '--num', help='number of batches (default=20)', type=int, required=False)
     parser.add_argument('-c', '--code', help='source code (default=googleImageScrape.py)', type=str, required=False)
@@ -85,9 +87,12 @@ if __name__ == "__main__":
     parser.add_argument('-o2', '--out2', help='out file (this file contains the  scripts for image scraping; either file path or file name; default file extension: .sh)', type=str, required=False)
 
     args = parser.parse_args()
-
+    master='master.csv' if args.master is None else args.master
+    if args.master is None:
+        with open(master,'w') as f: pass # creates a blank file
     out='out-tbd.csv' if args.out1 is None else args.out1 # tbd = to be downloaded
-    check_master(args.source,args.master,out)
+    check_master(args.source,master,out)    
+
     if args.num is None: source_list=generate_batches(args.source)
     if args.num is not None: source_list=generate_batches(args.source,int(args.num))
     out_sh='out.sh' if args.out2 is None else args.out2
