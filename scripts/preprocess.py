@@ -70,7 +70,7 @@ def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l
         for line in source0: 
             line_content0='python ' + source_code + ' -k ' + str(line) + ' -l ' + str(l)
             line_content1='python utils.py -f ' + out_file + '\n'
-            f_out.write(line_content0+'; '+ line_content1)
+            f_out.write(line_content0+' && '+ line_content1)
     print('Batch lists generated!')
 
 
