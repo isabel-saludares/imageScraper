@@ -51,10 +51,11 @@ def generate_batches(source,n=20):
     """
     blist=[]
     with open(source) as f_source:
-        start=next_n_lines(f_source, n); string_to_append='"'+",".join(start)+'"'; blist.append(string_to_append)
-        while start!=[]: start=next_n_lines(f_source, n); blist.append(string_to_append)
+        start=next_n_lines(f_source, n); blist.append('"'+",".join(start)+'"')
+        while start!=[]: start=next_n_lines(f_source, n); blist.append('"'+",".join(start)+'"')
         print('2. Generation of batches completed!')
     return blist
+
 
 
 # 3. Connect the batch list of downloads to the scraping script
