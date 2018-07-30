@@ -41,6 +41,8 @@ def check_master(source,master,out):
 from itertools import islice
 def next_n_lines(file_opened, N): return [x.strip() for x in islice(file_opened, N)]
 
+def gen_string(lines): string=",".join(lines); string=string.replace('`',''); string=string.replace('"',''); string=string.replace("'",''); return '"'+string+'"'
+
 def generate_batches(source,n=20):
     """
     generates batch lists given a source file.
@@ -51,8 +53,8 @@ def generate_batches(source,n=20):
     """
     blist=[]
     with open(source) as f_source:
-        start=next_n_lines(f_source, n); blist.append('"'+",".join(start)+'"')
-        while start!=[]: start=next_n_lines(f_source, n); blist.append('"'+",".join(start)+'"')
+        start=next_n_lines(f_source, n); string=gen_string(start); blist.append(string)
+        while start!=[]: start=next_n_lines(f_source, n); string=gen_string(start); blist.append(string)
         print('2. Generation of batches completed!')
     return blist
 
