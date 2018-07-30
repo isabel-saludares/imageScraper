@@ -13,6 +13,7 @@ python preprocess.py -s <source file>
 2.
 Part 1. will yield a .sh file. To run this:
 bash <.sh file>
+(example: bash out.sh)
 
 Note: Use python or python3
 ```
