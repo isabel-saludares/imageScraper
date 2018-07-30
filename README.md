@@ -6,9 +6,9 @@
 ```
 1. 
 cd [current directory of googleImageScrape.py]
-python3 preprocess.py -s <source file> -m <reference file>
+python3 preprocess.py -s <source file>
 
-(example: python3 preprocess.py -s source.csv -m master.csv)
+(example: python3 preprocess.py -s source.csv)
 
 2.
 Part 1. will yield a .sh file. To run this:
