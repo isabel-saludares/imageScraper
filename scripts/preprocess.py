@@ -41,7 +41,7 @@ def check_master(source,master,out):
 from itertools import islice
 def next_n_lines(file_opened, N): return [x.strip() for x in islice(file_opened, N)]
 
-def gen_string(lines): string=",".join(lines); string=string.replace('`',''); string=string.replace('"',''); string=string.replace("'",''); return '"'+string+'"'
+def gen_string(lines): string=",".join(lines); string=string.replace('`',''); string=string.replace('"',''); string=string.replace("'",''); return "'"+string+"'"
 
 def generate_batches(source,n=20):
     """
@@ -62,6 +62,7 @@ def generate_batches(source,n=20):
 
 # 3. Connect the batch list of downloads to the scraping script
 # ...
+import os
 def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l=100):
 
     source0=set(source_list)
@@ -70,7 +71,10 @@ def connect_batch_list(source_list,out_file,source_code='googleImageScrape.py',l
         for line in source0: 
             line_content0='python ' + source_code + ' -k ' + str(line) + ' -l ' + str(l)
             line_content1='python utils.py -f ' + out_file + '\n'
-            f_out.write(line_content0+' && '+ line_content1)
+            temp=os.path.splitext(out_file)[0] + '.tmp'
+            ofile='"' + out_file + '"'; tmp='"' + temp + '"'
+            line_content1='tail -n +2 ' + ofile + ' > ' + tmp + ' && mv ' + tmp + ' ' + ofile
+            f_out.write(line_content0+' && '+ line_content1 + '\n')
     print('Batch lists generated!')
 
 
